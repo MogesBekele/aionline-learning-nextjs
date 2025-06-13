@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { UserButton } from '@clerk/nextjs'
+import { SignInButton, UserButton } from '@clerk/nextjs'
 
 const page = () => {
   return (
@@ -8,6 +8,7 @@ const page = () => {
       <h1>this the home page</h1>
       <Button>add to card</Button>
       <UserButton/>
+      <SignInButton/>
     </div>
   )
 }

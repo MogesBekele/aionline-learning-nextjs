@@ -3,14 +3,16 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useUser } from '@clerk/nextjs'
 
+
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const { user } = useUser()
+
 
   useEffect(() => {
     user && CreateNewUser()
   }, [user])
 
-
+  
 
 const CreateNewUser = async () => {
   // Use a fallback if name is missing

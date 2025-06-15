@@ -2,10 +2,12 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useUser } from '@clerk/nextjs'
+import { UserDetialContext } from '@/context/UserDetialContext'
 
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const { user } = useUser()
+  const [userDetails, setUserDetails] = React.useState<any>(null);
 
 
   useEffect(() => {
@@ -37,12 +39,16 @@ const CreateNewUser = async () => {
     email
   });
   console.log(result.data);
+  setUserDetails(result.data);
 }
 
   return (
-    <div>
-      {children}
-    </div>
+
+  <UserDetialContext.Provider value={{userDetails, setUserDetails}}>
+   <div>{children}</div>
+  </UserDetialContext.Provider>
+  
+ 
   )
 }
 

@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function Workspace() {
   return (
-    <div>
-      Workspace
-    </div>
-  )
+    
+    <div>Workspace</div>
+
+  );
 }
 
-export default Workspace
+export default Workspace;

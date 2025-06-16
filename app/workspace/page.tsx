@@ -3,7 +3,7 @@ import React from "react";
 function Workspace() {
   return (
     
-    <div>Workspace</div>
+    <div className="text-black w-38">Workspace</div>
 
   );
 }

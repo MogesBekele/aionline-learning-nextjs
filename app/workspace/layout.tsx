@@ -2,9 +2,11 @@ import React from "react";
 import WorkspaceProvider from "./provider";
 
 const WorkspaceLayout = ({ children }: { children: React.ReactNode }) => {
-  return;
+  return(
+  <WorkspaceProvider>{children}</WorkspaceProvider>
+  )
 
-  <WorkspaceProvider>{children}</WorkspaceProvider>;
+
 };
 
 export default WorkspaceLayout;

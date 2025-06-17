@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -21,12 +22,13 @@ import {
   UserCircle2Icon,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const SidebarOptions = [
   {
     title: "Dashboard",
     icon: LayoutDashboard,
-    path: "/#",
+    path: "/workspace",
   },
   {
     title: "My Learning",
@@ -55,6 +57,7 @@ const SidebarOptions = [
   },
 ];
 function AppSidebar() {
+  const path= usePathname()
   return (
     <Sidebar>
       <SidebarHeader className="p-4">
@@ -76,9 +79,10 @@ function AppSidebar() {
             <SidebarMenu>
               {SidebarOptions.map((items, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild>
-                    <Link href={items.path} className="text-[17px]">
-                      <items.icon className="mr-2 h-7 w-7" />
+                  <SidebarMenuButton asChild
+                  className="p-5">
+                    <Link href={items.path} className={`text-[17px] ${path.includes(items.path)&& 'text-primary bg-purple-50'}`}>
+                      <items.icon className=" h-7 w-7" />
                       <span>{items.title}</span>
                     </Link>
                   </SidebarMenuButton>

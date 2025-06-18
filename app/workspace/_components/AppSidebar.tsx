@@ -57,7 +57,7 @@ const SidebarOptions = [
   },
 ];
 function AppSidebar() {
-  const path= usePathname()
+  const path = usePathname();
   return (
     <Sidebar>
       <SidebarHeader className="p-4">
@@ -79,9 +79,13 @@ function AppSidebar() {
             <SidebarMenu>
               {SidebarOptions.map((items, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild
-                  className="p-5">
-                    <Link href={items.path} className={`text-[17px] ${path.includes(items.path)&& 'text-primary bg-purple-50'}`}>
+                  <SidebarMenuButton asChild className="p-5">
+                    <Link
+                      href={items.path}
+                      className={`text-[17px] ${
+                        path.includes(items.path) && "text-primary bg-purple-50"
+                      }`}
+                    >
                       <items.icon className=" h-7 w-7" />
                       <span>{items.title}</span>
                     </Link>

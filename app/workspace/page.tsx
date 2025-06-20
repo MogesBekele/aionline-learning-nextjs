@@ -4,12 +4,10 @@ import CourseList from "./_components/CourseList";
 
 function Workspace() {
   return (
-    
-    <div >
-      <WellcomeBanner/>
-      <CourseList/>
+    <div>
+      <WellcomeBanner />
+      <CourseList />
     </div>
-
   );
 }
 

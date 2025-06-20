@@ -1,9 +1,12 @@
 import React from "react";
+import WellcomeBanner from "./_components/WellcomeBanner";
 
 function Workspace() {
   return (
     
-    <div className="text-black w-38">Workspace</div>
+    <div className="text-black ">
+      <WellcomeBanner/>
+    </div>
 
   );
 }

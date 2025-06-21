@@ -20,7 +20,25 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Sparkle } from "lucide-react";
+import { useState } from "react";
 function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
+  const [formData, setFormData] = useState({
+    courseName: "",
+    courseDescription: "",
+    noOfChapters: 0,
+    includeVideo: false,
+    difficultyLevel: "beginner",
+  });
+  
+const handleSubmit = (field : string, value : string) => {
+  setFormData((prevData) => ({
+    ...prevData,
+    [field]: value,
+  }));
+
+
+};
+
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>

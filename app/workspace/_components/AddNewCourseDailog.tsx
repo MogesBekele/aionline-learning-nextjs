@@ -18,6 +18,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Sparkle } from "lucide-react";
 function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
   return (
     <Dialog>
@@ -55,6 +57,13 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
                     <SelectItem value="advanced">Advanced</SelectItem>
                   </SelectContent>
                 </Select>
+              </div>
+                <div>
+                <label>Category</label>
+                <Input placeholder="Category (separeted by comma)" />
+              </div>
+              <div className="mt-5">
+                <Button className="w-full"> <Sparkle/> Generate Course</Button>
               </div>
             </div>
           </DialogDescription>

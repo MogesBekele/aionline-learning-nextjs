@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import AddNewCourseDailog from "./AddNewCourseDailog";
 
 const SidebarOptions = [
   {
@@ -71,7 +72,9 @@ function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <Button>Create New Courese</Button>
+          <AddNewCourseDailog>
+            <Button>Create New Courese</Button>
+          </AddNewCourseDailog>
         </SidebarGroup>
 
         <SidebarGroup>

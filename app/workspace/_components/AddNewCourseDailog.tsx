@@ -44,15 +44,15 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
                 <Switch />
               </div>
               <div>
-                <label>Difficulty Level</label>
-                <Select>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Theme" />
+                <label className="mb-2">Difficulty Level</label>
+                <Select defaultValue="beginner"> 
+                  <SelectTrigger className="w-ull">
+                    <SelectValue placeholder="Difficulty Level" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
+                    <SelectItem value="beginner">Beginner</SelectItem>
+                    <SelectItem value="moderate">Moderate</SelectItem>
+                    <SelectItem value="advanced">Advanced</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

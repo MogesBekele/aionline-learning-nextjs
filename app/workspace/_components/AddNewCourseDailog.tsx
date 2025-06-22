@@ -23,18 +23,20 @@ import { Sparkle } from "lucide-react";
 import { useState } from "react";
 function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
   const [formData, setFormData] = useState({
-    courseName: "",
-    courseDescription: "",
+    name: "",
+    description: "",
     noOfChapters: 0,
     includeVideo: false,
     difficultyLevel: "beginner",
   });
   
-const handleSubmit = (field : string, value : string) => {
+const handleSubmit = (field : string, value : any) => {
   setFormData((prevData) => ({
     ...prevData,
     [field]: value,
   }));
+
+  console.log(formData)
 
 
 };
@@ -49,23 +51,23 @@ const handleSubmit = (field : string, value : string) => {
             <div className="flex flex-col gap-3 mt-3">
               <div>
                 <label>Course Name</label>
-                <Input placeholder="Course Name" />
+                <Input placeholder="Course Name" onChange={(e) => handleSubmit("name", e?.target.value)} />
               </div>
               <div>
                 <label>Course Description (Optional)</label>
-                <Textarea placeholder="Course Description" />
+                <Textarea placeholder="Course Description"  onChange={(e) => handleSubmit("description", e?.target.value)}/>
               </div>
               <div>
                 <label>No. Of Chapters</label>
-                <Input placeholder="No Of Chapters" type="number" min={1} />
+                <Input placeholder="No Of Chapters" type="number" min={1} onChange={(e) => handleSubmit("noOfChapters", e?.target.value)} />
               </div>
               <div className="flex items-center gap-3">
                 <label>Include Video</label>
-                <Switch />
+                <Switch onCheckedChange={() => handleSubmit("includeVideo", !formData.includeVideo)} />
               </div>
               <div>
                 <label className="mb-2">Difficulty Level</label>
-                <Select defaultValue="beginner"> 
+                <Select defaultValue="beginner"  onValueChange={(value) => handleSubmit("difficultyLevel", value)}>
                   <SelectTrigger className="w-ull">
                     <SelectValue placeholder="Difficulty Level" />
                   </SelectTrigger>
@@ -78,7 +80,7 @@ const handleSubmit = (field : string, value : string) => {
               </div>
                 <div>
                 <label>Category</label>
-                <Input placeholder="Category (separeted by comma)" />
+                <Input placeholder="Category (separeted by comma)"  onChange={(e) => handleSubmit("category", e?.target.value)} />
               </div>
               <div className="mt-5">
                 <Button className="w-full"> <Sparkle/> Generate Course</Button>

@@ -25,9 +25,10 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    noOfChapters: 0,
+    noOfChapters: 1,
     includeVideo: false,
-    difficultyLevel: "beginner",
+    difficultyLevel: "",
+    category: "",
   });
   
 const handleSubmit = (field : string, value : any) => {
@@ -40,6 +41,10 @@ const handleSubmit = (field : string, value : any) => {
 
 
 };
+const onGenerate = ()=>{
+  console.log("Generating course with data: ", formData);
+}
+
 
   return (
     <Dialog>
@@ -83,7 +88,7 @@ const handleSubmit = (field : string, value : any) => {
                 <Input placeholder="Category (separeted by comma)"  onChange={(e) => handleSubmit("category", e?.target.value)} />
               </div>
               <div className="mt-5">
-                <Button className="w-full"> <Sparkle/> Generate Course</Button>
+                <Button className="w-full" onClick={onGenerate}> <Sparkle/> Generate Course</Button>
               </div>
             </div>
           </DialogDescription>

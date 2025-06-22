@@ -1,4 +1,4 @@
-import { integer, boolean, pgTable, varchar } from "drizzle-orm/pg-core";
+import { integer, boolean, pgTable, varchar, json } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -10,11 +10,12 @@ export const usersTable = pgTable("users", {
 export const coursesTable = pgTable("courses", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   cid: varchar().notNull(),
-  description: varchar(),
   name: varchar(),
-  noOfChapters: integer(),
-  includeVideo: boolean(),
-  level: varchar(),
+  description: varchar(),
+  noOfChapters: integer().notNull(),
+  includeVideo: boolean().default(false),
+  level: varchar().notNull(),
   category: varchar(),
-  userEmail: varchar("userEmail").references(() => usersTable.email),
+  courseJson: json(),
+  userEmail: varchar("userEmail").references(() => usersTable.email).notNull(),
 });

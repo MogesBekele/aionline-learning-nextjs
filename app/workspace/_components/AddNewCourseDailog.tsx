@@ -21,15 +21,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { Sparkle } from "lucide-react";
 import { useState } from "react";
+
+
+const initialFormData = {
+  name: "",
+  description: "",
+  noOfChapters: 1,
+  includeVideo: false,
+  difficultyLevel: "",
+  category: "",
+}
 function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    noOfChapters: 1,
-    includeVideo: false,
-    difficultyLevel: "",
-    category: "",
-  });
+  const [formData, setFormData] = useState(initialFormData);
   
 const handleSubmit = (field : string, value : any) => {
   setFormData((prevData) => ({
@@ -41,10 +44,11 @@ const handleSubmit = (field : string, value : any) => {
 
 
 };
-const onGenerate = ()=>{
+const onGenerate = () => {
   console.log("Generating course with data: ", formData);
-}
-
+  // ...send your data here...
+  setFormData(initialFormData); // Reset the form
+};
 
   return (
     <Dialog>
@@ -56,23 +60,23 @@ const onGenerate = ()=>{
             <div className="flex flex-col gap-3 mt-3">
               <div>
                 <label>Course Name</label>
-                <Input placeholder="Course Name" onChange={(e) => handleSubmit("name", e?.target.value)} />
+                <Input placeholder="Course Name"   value={formData.name} onChange={(e) => handleSubmit("name", e?.target.value)} />
               </div>
               <div>
                 <label>Course Description (Optional)</label>
-                <Textarea placeholder="Course Description"  onChange={(e) => handleSubmit("description", e?.target.value)}/>
+                <Textarea placeholder="Course Description" value={formData.description}  onChange={(e) => handleSubmit("description", e?.target.value)}/>
               </div>
               <div>
                 <label>No. Of Chapters</label>
-                <Input placeholder="No Of Chapters" type="number" min={1} onChange={(e) => handleSubmit("noOfChapters", e?.target.value)} />
+                <Input placeholder="No Of Chapters" type="number" min={1} onChange={(e) => handleSubmit("noOfChapters", e?.target.value)}  value={formData.noOfChapters} />
               </div>
               <div className="flex items-center gap-3">
                 <label>Include Video</label>
-                <Switch onCheckedChange={() => handleSubmit("includeVideo", !formData.includeVideo)} />
+                <Switch onCheckedChange={() => handleSubmit("includeVideo", !formData.includeVideo)} checked={formData.includeVideo} />
               </div>
               <div>
                 <label className="mb-2">Difficulty Level</label>
-                <Select defaultValue="beginner"  onValueChange={(value) => handleSubmit("difficultyLevel", value)}>
+                <Select defaultValue="beginner"  onValueChange={(value) => handleSubmit("difficultyLevel", value)}  >
                   <SelectTrigger className="w-ull">
                     <SelectValue placeholder="Difficulty Level" />
                   </SelectTrigger>
@@ -85,7 +89,7 @@ const onGenerate = ()=>{
               </div>
                 <div>
                 <label>Category</label>
-                <Input placeholder="Category (separeted by comma)"  onChange={(e) => handleSubmit("category", e?.target.value)} />
+                <Input placeholder="Category (separeted by comma)"  onChange={(e) => handleSubmit("category", e?.target.value)}  value={formData.category}/>
               </div>
               <div className="mt-5">
                 <Button className="w-full" onClick={onGenerate}> <Sparkle/> Generate Course</Button>

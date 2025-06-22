@@ -107,9 +107,7 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
                 <label className="mb-2">Difficulty Level</label>
                 <Select
                   defaultValue="beginner"
-                  onValueChange={(value) =>
-                    handleSubmit("level", value)
-                  }
+                  onValueChange={(value) => handleSubmit("level", value)}
                   value={formData.level}
                 >
                   <SelectTrigger className="w-full">

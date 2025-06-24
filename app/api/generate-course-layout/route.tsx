@@ -3,13 +3,7 @@ import {
 } from '@google/genai';
 export async function POST(request: Request){
   const formdata = await request.json()
-// To run this code you need to install the following dependencies:
-// npm install @google/genai mime
-// npm install -D @types/node
 
-
-
-async function main() {
   const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY,
   });
@@ -42,6 +36,5 @@ async function main() {
   }
 }
 
-main();
 
-}
+

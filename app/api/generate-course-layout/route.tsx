@@ -1,5 +1,7 @@
+import { db } from "@/config/db";
+import { coursesTable } from "@/config/schema";
+import { currentUser } from "@clerk/nextjs/server";
 import { GoogleGenAI } from "@google/genai";
-import { NextResponse } from "next/server";
 
 const PROMPT = `
 Generate a learning course based on the following details. 
@@ -39,6 +41,7 @@ User input: Reactjs, 3 chapters
 `;
 
 export async function POST(request: Request) {
+  const user =  await currentUser();
   try {
     const formdata = await request.json();
 
@@ -76,6 +79,11 @@ export async function POST(request: Request) {
 
     try {
       const json = JSON.parse(text);
+      await db.insert(coursesTable).values({
+        ...formdata,
+        courseJson: JSON.stringify(json),
+        userEmail: user?.primaryEmailAddress?.emailAddress
+      });
       return new Response(JSON.stringify(json), {
         status: 200,
         headers: { "Content-Type": "application/json" },

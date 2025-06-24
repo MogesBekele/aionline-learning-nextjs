@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
+import { NextResponse } from "next/server";
 
 const PROMPT = `
 Generate a learning course based on the following details. 

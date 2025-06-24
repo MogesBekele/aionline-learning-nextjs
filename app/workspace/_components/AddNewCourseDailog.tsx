@@ -22,7 +22,7 @@
 //       role: 'user',
 //       parts: [
 //         {
-//           text: `generate learning course depends on following detials in which makesure to add course name, description, chapters name, image prompt, include ui/ux elements such as mookup screans, text blocks, icons buttons and creative workspace tools and symbolic elements related to user course, like sticky, notes design components, and visual aids. use a vibrant color palette(blues , purples, oranges ) with a clean professional look. the illustration should feel creative, tech-savvy and educational, ideals for visualizing concepts in user course for courses banner in 3d format. topic under each chapters, duration for each chapters etc in Json format only 
+//           text: `generate learning course depends on following detials in which makesure to add course name, description, chapters name, image prompt, include ui/ux elements such as mookup screans, text blocks, icons buttons and creative workspace tools and symbolic elements related to user course, like sticky, notes design components, and visual aids. use a vibrant color palette(blues , purples, oranges ) with a clean professional look. the illustration should feel creative, tech-savvy and educational, ideals for visualizing concepts in user course for courses banner in 3d format. topic under each chapters, duration for each chapters etc in Json format only
 
 // Schema
 // {
@@ -44,9 +44,7 @@
 // ]
 
 // }
-// }  
-
-
+// }
 
 // user input: Reactjs , 3 chapters`,
 //         },
@@ -60,31 +58,25 @@
 
 // I'm currently crafting the course outline in a JSON format for a ReactJS learning program. I've begun with the overarching details, naming it "ReactJS: From Fundamentals to Modern Web Apps." My next step involves fleshing out the course description, aiming for a concise and engaging overview of the learning journey.
 
-
 // **Developing Course Structure**
 
 // I've moved on to structuring the chapters. I'm focusing on "Chapter 1: Foundations of React & JSX," detailing its duration and topics: "Introduction to React," "Setting up the development environment," "Understanding JSX," and "Creating and rendering components." I'm also working on a descriptive image prompt for a 3D banner.
-
 
 // **Structuring Chapter Details**
 
 // I'm now deep-diving into the second chapter. I'm assigning it a "Core Concepts - Components, Props & State" title and estimating its duration at 3 hours and 15 minutes. The topics I'm planning for this chapter are "Functional vs. Class Components," "Understanding Props: Passing Data to Components," and "Introduction to State." My goal is to strike a balance between providing key concepts in a concise way.
 
-
 // **Outlining Chapter Three**
 
 // I'm now detailing Chapter Three, "Advanced React - Hooks & Lifecycle." The duration will be around 3 hours and 30 minutes, with topics including "Introduction to Hooks," "useEffect Hook," "useContext Hook," and "Component Lifecycle." I'm also preparing image prompts to visualize key concepts for this chapter's banner.
-
 
 // **Constructing Course Details**
 
 // I'm now structuring the JSON object for the course. I've defined the core course details: name, description, category ("Web Development"), level ("Beginner to Intermediate"), and that it includes videos. I'm moving on to structuring the chapters, and their corresponding details.
 
-
 // **Outlining the Core Structure**
 
 // I've defined the course details now. I've set the name to "ReactJS: From Fundamentals to Modern Web Apps," crafted a brief, enticing description, and designated it for "Web Development" at a "Beginner to Intermediate" level. The course will have videos and three chapters as requested. I'm now structuring the chapter outlines, ensuring a smooth flow from fundamental concepts to advanced topics. The image prompts for chapter banners are also ready.
-
 
 // `,
 //         },
@@ -165,9 +157,6 @@
 
 // main();
 
-
-
-
 import React, { useState, ChangeEvent } from "react";
 import {
   Dialog,
@@ -188,7 +177,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Sparkle } from "lucide-react";
+import { Loader2Icon, Sparkle } from "lucide-react";
 import axios from "axios";
 
 type FormData = {
@@ -210,6 +199,7 @@ const initialFormData: FormData = {
 };
 
 function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>(initialFormData);
 
   const handleSubmit = (field: keyof FormData, value: any) => {
@@ -219,12 +209,17 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
     }));
   };
 
-  const onGenerate = async() => {
+  const onGenerate = async () => {
     console.log("Generating course with data: ", formData);
+    setLoading(true);
 
-    const result  = await axios.post("/api/generate-course-layout", {...formData});
+    const result = await axios.post("/api/generate-course-layout", {
+      ...formData,
+    });
     // ...send your data here...
     console.log(result.data);
+
+    setLoading(false);
     setFormData(initialFormData); // Reset the form
   };
 
@@ -305,8 +300,13 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
                 />
               </div>
               <div className="mt-5">
-                <Button className="w-full" onClick={onGenerate}>
-                  <Sparkle /> Generate Course
+                <Button disabled={loading} className="w-full" onClick={onGenerate}>
+                  {loading ? (
+                    <Loader2Icon className="animate-spin" />
+                  ) : (
+                    <Sparkle />
+                  )}
+                  Generate Course
                 </Button>
               </div>
             </div>

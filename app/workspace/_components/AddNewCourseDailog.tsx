@@ -189,6 +189,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Sparkle } from "lucide-react";
+import axios from "axios";
 
 type FormData = {
   name: string;
@@ -218,9 +219,12 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
     }));
   };
 
-  const onGenerate = () => {
+  const onGenerate = async() => {
     console.log("Generating course with data: ", formData);
+
+    const result  = await axios.post("/api/generate-course-layout", {...formData});
     // ...send your data here...
+    console.log(result.data);
     setFormData(initialFormData); // Reset the form
   };
 

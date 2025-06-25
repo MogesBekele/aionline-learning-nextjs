@@ -100,6 +100,7 @@
 // }
 import { db } from "@/config/db";
 import { coursesTable } from "@/config/schema";
+
 import { currentUser } from "@clerk/nextjs/server";
 
 export async function POST(request: Request) {
@@ -143,6 +144,7 @@ export async function POST(request: Request) {
     // Save to your database (optional but included for realism)
     await db.insert(coursesTable).values({
       ...formdata,
+    
       courseJson: JSON.stringify(mockJson),
       userEmail: user?.primaryEmailAddress?.emailAddress,
     });

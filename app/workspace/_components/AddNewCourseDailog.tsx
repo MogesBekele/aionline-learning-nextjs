@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, ChangeEvent } from "react";
 import {
@@ -143,7 +142,11 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
                 />
               </div>
               <div className="mt-5">
-                <Button disabled={loading} className="w-full" onClick={onGenerate}>
+                <Button
+                  disabled={loading}
+                  className="w-full"
+                  onClick={onGenerate}
+                >
                   {loading ? (
                     <Loader2Icon className="animate-spin" />
                   ) : (

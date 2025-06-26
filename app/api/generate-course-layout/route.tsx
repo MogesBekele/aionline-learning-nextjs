@@ -146,8 +146,8 @@ export async function POST(request: Request) {
 
     // Save to your database (optional but included for realism)
     await db.insert(coursesTable).values({
+      cid: crypto.randomUUID(), // <-- add this line
       ...formdata,
-
       courseJson: JSON.stringify(mockJson),
       userEmail: user?.primaryEmailAddress?.emailAddress,
     });

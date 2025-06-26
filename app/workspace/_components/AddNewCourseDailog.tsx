@@ -60,7 +60,6 @@ function AddNewCourseDailog({ children }: { children: React.ReactNode }) {
     });
     // ...send your data here...
     console.log(result.data);
-
     setLoading(false);
     setFormData(initialFormData); // Reset the form
   };
